@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ---------------------------------------------------------------------------
+   Design tokens — keep in sync with website/style.css
+   ------------------------------------------------------------------------ */
+:root,
+[data-theme="light"] {
+  --canvas: #fafafa;
+  --surface: #ffffff;
+  --fg: #111111;
+  --fg-muted: #666666;
+  --line: #e5e5e5;
+  --line-strong: #d4d4d4;
+  --hover: #f3f3f3;
+  --accent: #2563eb;
+  --danger: #b42318;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px rgb(0 0 0 / 0.08);
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --canvas: #0c0c0c;
+  --surface: #141414;
+  --fg: #f4f4f4;
+  --fg-muted: #888888;
+  --line: #242424;
+  --line-strong: #333333;
+  --hover: #1c1c1c;
+  --accent: #2563eb;
+  --danger: #f97066;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 12px 32px rgb(0 0 0 / 0.5);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-fg: var(--fg);
+  --color-muted: var(--fg-muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-hover: var(--hover);
+  --color-accent: var(--accent);
+  --color-danger: var(--danger);
+  --shadow-pop: var(--shadow);
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "SF Mono", Consolas, monospace;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: var(--canvas);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1.45;
+    font-feature-settings: "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+    /* Desktop-app feel: text isn't selectable unless marked otherwise. */
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: default;
+  }
+
+  button {
+    cursor: default;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--accent) 25%, transparent);
+  }
+}
+
+@layer utilities {
+  .selectable {
+    user-select: text;
+    -webkit-user-select: text;
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--line-strong) transparent;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+input[type="range"] {
+  accent-color: var(--accent);
+}

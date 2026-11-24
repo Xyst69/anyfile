@@ -1,0 +1,50 @@
+[package]
+name = "anyfile"
+version = "1.0.0"
+description = "Convert anything, locally. No uploads, no limits."
+authors = ["AnyFile contributors"]
+license = "MIT"
+edition = "2021"
+rust-version = "1.80"
+
+[lib]
+# The `_lib` suffix avoids a name clash with the binary on Windows.
+name = "anyfile_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+tauri-plugin-opener = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["preserve_order"] }
+tokio = { version = "1", features = ["process", "io-util", "sync", "rt", "macros", "time"] }
+thiserror = "2"
+which = "8"
+tempfile = "3"
+
+# Tier 1: images
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "webp", "bmp", "ico", "tiff", "gif", "avif", "rayon"] }
+webp = "0.3"
+resvg = "0.50"
+
+# Tier 1: structured data & text
+serde_norway = "0.9"
+toml = "1"
+csv = "1"
+quick-xml = "0.42"
+pulldown-cmark = { version = "0.13", default-features = false, features = ["html"] }
+htmd = "0.6"
+
+# Tier 1: PDF
+lopdf = "0.47"
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+panic = "abort"
+strip = true

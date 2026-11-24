@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AnyFile — Convert anything, locally</title>
+    <meta name="description" content="A small desktop file converter for images, documents, data, audio and video. Runs entirely on your machine. No uploads, no limits." />
+    <meta name="color-scheme" content="light dark" />
+    <meta property="og:title" content="AnyFile" />
+    <meta property="og:description" content="Convert anything, locally. No uploads, no limits." />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      try {
+        var t = localStorage.getItem("anyfile.site.theme");
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <header class="site-header wrap">
+      <a class="brand" href="./" aria-label="AnyFile home">
+        <svg class="logo" viewBox="0 0 1024 1024" aria-hidden="true">
+          <rect x="64" y="64" width="896" height="896" rx="208" fill="var(--fg)" />
+          <rect x="292" y="232" width="336" height="432" rx="40" fill="none" stroke="var(--canvas)" stroke-opacity="0.42" stroke-width="36" />
+          <rect x="396" y="360" width="336" height="432" rx="40" fill="var(--canvas)" />
+          <path d="M480 576 H640 M584 520 L640 576 L584 632" fill="none" stroke="var(--fg)" stroke-width="40" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        AnyFile
+      </a>
+      <nav class="nav">
+        <a href="#formats">Formats</a>
+        <a href="#" data-link="repo">GitHub</a>
+        <button class="theme-toggle" type="button" aria-label="Toggle theme" title="Toggle theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" /><path d="M12 4a8 8 0 0 1 0 16Z" class="fill" /></svg>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero wrap">
+        <p class="eyebrow mono">Desktop file converter · Windows, macOS, Linux</p>
+        <h1>Convert anything, locally.<br /><span class="muted">No uploads, no limits.</span></h1>
+        <p class="lede">
+          Drop in a document, image, spreadsheet, data file, song or video and pick a format. Conversion happens on your
+          machine, with nothing sent to a server and no file size cap.
+        </p>
+
+        <div class="cta">
+          <a class="button primary" id="download" href="#">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14" /></svg>
+            <span id="download-label">Download</span>
+          </a>
+          <div class="cta-meta">
+            <span class="mono" id="release-meta">Checking latest release…</span>
+            <span class="alt" id="alt-links"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="preview wrap" aria-label="App preview">
+        <div class="window" role="img" aria-label="AnyFile window converting report.docx to PDF">
+          <div class="win-bar">
+            <div class="win-title">
+              <svg class="logo" viewBox="0 0 1024 1024" aria-hidden="true">
+                <rect x="64" y="64" width="896" height="896" rx="208" fill="var(--fg)" />
+                <rect x="396" y="360" width="336" height="432" rx="40" fill="var(--canvas)" />
+              </svg>
+              AnyFile
+            </div>
+            <span class="pill mono"><i class="dot"></i>4/4 engines ready</span>
+          </div>
+
+          <div class="win-add">
+            <span class="add">+ Add files</span>
+            <span class="muted">4 files · 58.3 MB</span>
+          </div>
+
+          <ul class="win-list">
+            <li>
+              <span class="ext mono">DOCX</span>
+              <span class="file"><b>report.docx</b><small class="mono">2.4 MB → <em>310 KB</em></small></span>
+              <span class="arrow">→</span>
+              <span class="fmt mono">PDF</span>
+              <span class="state done"><span class="open">Open folder</span><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" /><path d="M5 8.3 7 10.2 11 6" /></svg></span>
+            </li>
+            <li class="running">
+              <span class="ext mono">MOV</span>
+              <span class="file"><b>site-walkthrough.mov</b><small class="mono">48.1 MB</small></span>
+              <span class="arrow">→</span>
+              <span class="fmt mono">MP4</span>
+              <span class="state mono"><span class="pct">64%</span></span>
+              <span class="bar" aria-hidden="true"></span>
+            </li>
+            <li>
+              <span class="ext mono">PNG</span>
+              <span class="file"><b>hero@2x.png</b><small class="mono">7.6 MB</small></span>
+              <span class="arrow">→</span>
+              <span class="fmt mono">WEBP</span>
+              <span class="state mono muted">Queued</span>
+            </li>
+            <li>
+              <span class="ext mono">YAML</span>
+              <span class="file"><b>config.yaml</b><small class="mono">2.2 KB</small></span>
+              <span class="arrow">→</span>
+              <span class="fmt mono">JSON</span>
+              <span class="state"></span>
+            </li>
+          </ul>
+
+          <div class="win-foot">
+            <span class="muted">Same folder</span>
+            <span class="convert">Converting</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="engines wrap">
+        <div>
+          <h2>Works out of the box</h2>
+          <p>
+            Images, SVG, JSON, YAML, TOML, XML, CSV, Markdown, HTML and text-to-PDF are built into the app. No extra
+            installs.
+          </p>
+        </div>
+        <div>
+          <h2>Uses what you already have</h2>
+          <p>
+            If <span class="mono">LibreOffice</span>, <span class="mono">Pandoc</span> or
+            <span class="mono">FFmpeg</span> are installed, AnyFile finds them and unlocks Office documents, e-books,
+            audio and video. If one is missing, it shows the one-line install command.
+          </p>
+        </div>
+      </section>
+
+      <section class="formats wrap" id="formats">
+        <div class="formats-head">
+          <h2>Supported formats</h2>
+          <div class="tabs" role="tablist" aria-label="Filter formats"></div>
+        </div>
+        <div class="matrix" id="matrix" role="tabpanel"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer wrap">
+      <p class="mono">Runs entirely on your machine. Zero telemetry.</p>
+      <nav>
+        <a href="#" data-link="repo">GitHub</a>
+        <a href="#" data-link="releases">Releases</a>
+        <a href="#" data-link="license">MIT License</a>
+      </nav>
+    </footer>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
